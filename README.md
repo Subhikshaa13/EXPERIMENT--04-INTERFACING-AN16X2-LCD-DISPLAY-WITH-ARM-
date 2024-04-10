@@ -173,7 +173,33 @@ https://engineeringxpert.com/wp-content/uploads/2022/04/26.png
 
 
 ## STM 32 CUBE PROGRAM :
+```
+#include "main.h"
+#include "lcd.h"
+int main(void)
+{
+  
+  HAL_Init();
+  SystemClock_Config();
+  MX_GPIO_Init();
+    /* USER CODE BEGIN 2 */
+    Lcd_PortType ports[] = { GPIOA, GPIOA, GPIOA, GPIOA };
+       Lcd_PinType pins[] = {GPIO_PIN_3, GPIO_PIN_2, GPIO_PIN_1, GPIO_PIN_0};
+       Lcd_HandleTypeDef lcd;
+       lcd = Lcd_create(ports, pins, GPIOB, GPIO_PIN_0, GPIOB, GPIO_PIN_1, LCD_4_BIT_MODE);
+       Lcd_cursor(&lcd, 0,1);
+       Lcd_string(&lcd, "Subhikshaa M");
 
+      while (1)
+      {
+        	  for ( int x = 1; x <= 200 ; x++ )
+    	   	 	  {
+    	   		  Lcd_cursor(&lcd, 1,7);
+    	   	 	  Lcd_int(&lcd, x);
+    	   	 	  HAL_Delay (1000);
+    	   	 	  }
+        }
+```
 
 
 
